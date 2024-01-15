@@ -28,19 +28,19 @@ export default function Board() {
           value={value[0]}
           ikey={0}
           handleClick={() => handleClick(0)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[1]}
           ikey={1}
           handleClick={() => handleClick(1)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[2]}
           ikey={2}
           handleClick={() => handleClick(2)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
       </div>
       <div className="flex align-middle justify-center">
@@ -48,19 +48,19 @@ export default function Board() {
           value={value[3]}
           ikey={3}
           handleClick={() => handleClick(3)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[4]}
           ikey={4}
           handleClick={() => handleClick(4)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[5]}
           ikey={5}
           handleClick={() => handleClick(5)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
       </div>
       <div className="flex align-middle justify-center">
@@ -68,19 +68,19 @@ export default function Board() {
           value={value[6]}
           ikey={6}
           handleClick={() => handleClick(6)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[7]}
           ikey={7}
           handleClick={() => handleClick(7)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
         <Square
           value={value[8]}
           ikey={8}
           handleClick={() => handleClick(8)}
-          color={winner}
+          color={winner == null ? [] : winner}
         ></Square>
       </div>
     </>
