@@ -1,3 +1,8 @@
 export default function App() {
-  return <h1 className="text-3xl font-bold underline"> rayhan tik tok toe</h1>;
+  return (
+    <>
+      <div>wecome to git project setup</div>
+      <h1 className="text-3xl font-bold underline"> rayhan tik tok toe</h1>
+    </>
+  );
 }
