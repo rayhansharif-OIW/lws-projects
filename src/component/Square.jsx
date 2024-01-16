@@ -17,9 +17,9 @@ export default function Square({ value, ikey, handleClick, color }) {
       <button
         className={
           green == true
-            ? "bg-green-700 border border-gray-400 h-20 w-20 m-1 leading-9 text-lg"
+            ? "bg-green-300 border border-gray-400 h-20 w-20 m-1 leading-9 text-lg "
             : red == true
-            ? "bg-red-600 border border-gray-400 h-20 w-20 m-1 leading-9 text-lg"
+            ? "bg-red-300 border border-gray-400 h-20 w-20 m-1 leading-9 text-lg"
             : "bg-white border border-gray-400 h-20 w-20 m-1 leading-9 text-lg"
         }
         onClick={handleClick}
