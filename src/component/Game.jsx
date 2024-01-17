@@ -8,7 +8,7 @@ export default function Game() {
   const [xIsNext, setxIsNext] = useState(true);
 
   const currentValue = history[history.length - 1];
-  console.log(history);
+  console.log(history.length);
 
   let winStatus;
   const winner = calculateWinner(currentValue);
@@ -20,6 +20,11 @@ export default function Game() {
   function gameController(nextValue, xIsNext) {
     setHistory([...history, nextValue]);
     setxIsNext(!xIsNext);
+  }
+
+  function historyButtonClick(index) {
+    const slicedArray = history.slice(0, index + 1);
+    setHistory(slicedArray);
   }
   return (
     <div className="flex justify-center items-center h-screen ">
@@ -33,7 +38,7 @@ export default function Game() {
         ></Board>
       </div>
       <div>
-        <History />
+        <History histories={history} historyButtonClick={historyButtonClick} />
       </div>
     </div>
   );
