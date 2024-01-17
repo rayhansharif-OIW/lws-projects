@@ -7,6 +7,7 @@ export default function History({ histories, historyButtonClick }) {
       <h1 className="flex items-center justify-center bg-orange-200 ">
         History
       </h1>
+      <h3>{copyHistory.length}</h3>
       <div className=" flex flex-col overflow-y: scroll h-full ">
         {copyHistory.map((history, index) => {
           return (
@@ -23,3 +24,5 @@ export default function History({ histories, historyButtonClick }) {
     </div>
   );
 }
+
+//change will update the
