@@ -4,30 +4,32 @@ import History from "./History";
 import { useState } from "react";
 
 export default function Game() {
-  const [value, setValue] = useState(Array(9).fill(null));
+  const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setxIsNext] = useState(true);
+
+  const currentValue = history[history.length - 1];
+  console.log(history);
+
   let winStatus;
-  const winner = calculateWinner(value);
+  const winner = calculateWinner(currentValue);
 
   winner == null
     ? (winStatus = `Next player: ${xIsNext ? "X" : "O"}`)
     : (winStatus = `winner: ${winner[0]}`);
-  function handleClick(i) {
-    const nextValue = value.slice();
-    if (value[i] == null && winner == null) {
-      xIsNext ? (nextValue[i] = "X") : (nextValue[i] = "O");
-      setxIsNext(!xIsNext);
-      setValue(nextValue);
-    }
+
+  function gameController(nextValue, xIsNext) {
+    setHistory([...history, nextValue]);
+    setxIsNext(!xIsNext);
   }
   return (
     <div className="flex justify-center items-center h-screen ">
       <div>
         <Board
-          value={value}
+          currentValue={currentValue}
           winner={winner}
           winStatus={winStatus}
-          handleClick={handleClick}
+          xIsNext={xIsNext}
+          gameController={gameController}
         ></Board>
       </div>
       <div>

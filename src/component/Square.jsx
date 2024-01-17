@@ -1,4 +1,4 @@
-export default function Square({ value, ikey, handleClick, color }) {
+export default function Square({ currentValue, ikey, handleClick, color }) {
   let green;
   let red;
   if (color.length != 0 && color[1].includes(ikey)) {
@@ -7,7 +7,7 @@ export default function Square({ value, ikey, handleClick, color }) {
     green = false;
   }
 
-  if (value != null && value != color[0] && color.length != 0) {
+  if (currentValue != null && currentValue != color[0] && color.length != 0) {
     red = true;
   } else {
     red = false;
@@ -24,7 +24,7 @@ export default function Square({ value, ikey, handleClick, color }) {
         }
         onClick={handleClick}
       >
-        {value}
+        {currentValue}
       </button>
     </>
   );
