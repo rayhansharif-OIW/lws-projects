@@ -6,8 +6,9 @@ import { useState } from "react";
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setxIsNext] = useState(true);
+  const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
 
-  const currentValue = history[history.length - 1];
+  const currentValue = history[currentHistoryIndex];
   console.log(history.length);
 
   let winStatus;
@@ -18,13 +19,18 @@ export default function Game() {
     : (winStatus = `winner: ${winner[0]}`);
 
   function gameController(nextValue, xIsNext) {
-    setHistory([...history, nextValue]);
+    const slicedHistory = [
+      ...history.slice(0, currentHistoryIndex + 1),
+      nextValue,
+    ];
+    setHistory(slicedHistory);
     setxIsNext(!xIsNext);
+    setCurrentHistoryIndex(slicedHistory.length - 1);
   }
 
   function historyButtonClick(index) {
-    const slicedArray = history.slice(0, index + 1);
-    setHistory(slicedArray);
+    setCurrentHistoryIndex(index);
+    setxIsNext(index % 2 == 0);
   }
   return (
     <div className="flex justify-center items-center h-screen ">
