@@ -1,28 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function SearchSortBar({ onsearch, onSort }) {
   const [formData, setFormData] = useState({
     searchText: "",
     sortBy: "",
   });
+  const [selectChange, setInputChange] = useState(false);
+
+  function onSortChangeHundle(sortBy) {
+    onSort(sortBy);
+  }
+
+  if (selectChange) {
+    onSortChangeHundle(formData);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    setFormData((prevData) => {
+      let newData = {
+        ...prevData,
+        [name]: value,
+      };
+
+      // Check if 'sortBy' is being updated
+      if (name === "sortBy" && prevData.sortBy != newData.sortBy) {
+        // Use setInputChange to update the state
+        setInputChange(true);
+      } else {
+        setInputChange(false);
+      }
+
+      return newData;
+    });
   };
 
   function handleSearchButton(e) {
     e.preventDefault();
     onsearch(formData);
   }
-
-  useEffect(() => {
-    console.log(formData.sortBy);
-    onSort(formData.sortBy);
-  }, [formData.sortBy]);
 
   return (
     <div className="mx-auto flex items-end justify-between max-md:max-w-[95%] max-md:flex-col max-md:items-start max-md:space-y-4">
