@@ -4,16 +4,10 @@ export default function SearchSortBar({ onsearch, onSort }) {
   const [formData, setFormData] = useState({
     searchText: "",
     sortBy: "",
+    sortChange: false,
   });
-  const [selectChange, setInputChange] = useState(false);
 
-  function onSortChangeHundle(sortBy) {
-    onSort(sortBy);
-  }
-
-  if (selectChange) {
-    onSortChangeHundle(formData);
-  }
+  // const [changeSort, setChangeSort] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,11 +19,20 @@ export default function SearchSortBar({ onsearch, onSort }) {
       };
 
       // Check if 'sortBy' is being updated
-      if (name === "sortBy" && prevData.sortBy != newData.sortBy) {
+      if (name === "sortBy" && prevData.sortBy !== newData.sortBy) {
         // Use setInputChange to update the state
-        setInputChange(true);
-      } else {
-        setInputChange(false);
+        newData = {
+          ...prevData,
+          [name]: value,
+          sortChange: true,
+        };
+      }
+      if (name === "sortBy" && prevData.sortBy === newData.sortBy) {
+        newData = {
+          ...prevData,
+          [name]: value,
+          sortChange: false,
+        };
       }
 
       return newData;
@@ -39,6 +42,13 @@ export default function SearchSortBar({ onsearch, onSort }) {
   function handleSearchButton(e) {
     e.preventDefault();
     onsearch(formData);
+  }
+
+  if (formData.sortChange == true) {
+    onSort(formData.sortBy);
+    // setChangeSort(false);
+  } else {
+    onSort("default");
   }
 
   return (
