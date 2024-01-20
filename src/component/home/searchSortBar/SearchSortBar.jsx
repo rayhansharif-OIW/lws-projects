@@ -5,7 +5,6 @@ export default function SearchSortBar({ onsearch, onSort }) {
     searchText: "",
     sortBy: "",
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
