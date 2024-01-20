@@ -5,34 +5,19 @@ export default function SearchSortBar({ onsearch, onSort }) {
     searchText: "",
     sortBy: "",
   });
-  const [selectChange, setInputChange] = useState(false);
-
-  function onSortChangeHundle(sortBy) {
-    onSort(sortBy);
-  }
-
-  if (selectChange) {
-    onSortChangeHundle(formData);
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevData) => {
-      let newData = {
+      const updatedData = {
         ...prevData,
         [name]: value,
       };
-
-      // Check if 'sortBy' is being updated
-      if (name === "sortBy" && prevData.sortBy != newData.sortBy) {
-        // Use setInputChange to update the state
-        setInputChange(true);
-      } else {
-        setInputChange(false);
+      if (updatedData.sortBy !== prevData.sortBy) {
+        onSort(updatedData.sortBy);
       }
 
-      return newData;
+      return updatedData;
     });
   };
 
